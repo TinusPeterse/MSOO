@@ -8,7 +8,7 @@ namespace MSO
 {
 	class Prijsberekenaar
 	{
-        public bool VerzendkostenToegevoegd = true;
+        public bool VerzendkostenToegevoegd = false;
 		private double verzendkosten = 4.95;
 		public double Berekenprijs(Dictionary<Product, int> dic, List<Product> list)
 		{
@@ -21,7 +21,7 @@ namespace MSO
                     if (VerzendkostenToegevoegd)
                     {
                         Prijs += verzendkosten;
-                        VerzendkostenToegevoegd = false;
+                        VerzendkostenToegevoegd = true;
                     }
                 }
             }
