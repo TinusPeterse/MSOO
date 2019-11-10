@@ -1,0 +1,7 @@
+C:\School\MSO\MSO\MSO\bin\Debug\MSO.exe.config
+C:\School\MSO\MSO\MSO\bin\Debug\MSO.exe
+C:\School\MSO\MSO\MSO\bin\Debug\MSO.pdb
+C:\School\MSO\MSO\MSO\obj\Debug\MSO.csprojAssemblyReference.cache
+C:\School\MSO\MSO\MSO\obj\Debug\MSO.csproj.CoreCompileInputs.cache
+C:\School\MSO\MSO\MSO\obj\Debug\MSO.exe
+C:\School\MSO\MSO\MSO\obj\Debug\MSO.pdb

@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DigitaalProduct.cs" />
+    <Compile Include="FysiekProduct.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="ProductCataloges.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

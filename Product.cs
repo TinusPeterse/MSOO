@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace MSO
 {
     public enum ProductType { Digitaal, Fysiek };
-    abstract class Product
+    public abstract class Product
     {
         public string naam;
-        public enum ProductType { Digitaal, Fysiek };
-        public double price;
+        public ProductType productType;
+        public double prijs;
         public string beschrijving;
     }
 }
