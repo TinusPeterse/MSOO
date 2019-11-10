@@ -11,10 +11,33 @@ namespace MSO
         
         static void Main(string[] args)
         {
+			bool done = false;
             WinkelWagentje winkelWagentje = new WinkelWagentje();
             winkelWagentje.productCataloges.HaalproductenUitDatabase();
-            winkelWagentje.productCataloges.BeschrijfAlleProducten();
-            winkelWagentje.Add(Convert.ToInt32(Console.ReadLine()));
+			winkelWagentje.productCataloges.BeschrijfAlleProducten();
+			while (!done)
+			{
+				
+				string input = Console.ReadLine();
+				int amount;
+				if (int.TryParse(input, out amount))
+				{
+					winkelWagentje.Add(Convert.ToInt32(amount - 1));
+					Console.Clear();
+					winkelWagentje.productCataloges.BeschrijfAlleProducten();
+				}
+				else
+					switch (input)
+					{
+						case "d":
+							done = true;
+							winkelWagentje.Betalen();
+							break;
+						case "w":
+							winkelWagentje.PrintWagentje();
+							break;
+					}
+			}
             Console.WriteLine("TheEndForNow");
             Console.ReadLine();
         }
