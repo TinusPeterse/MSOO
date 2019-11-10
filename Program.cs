@@ -8,18 +8,16 @@ namespace MSO
 {
     class ShopUI
     {
+        
         static void Main()
         {
             Verkoop verkoop = new Verkoop();
-            verkoop.winkelWagentje.productCataloges.HaalproductenUitDatabase();
             Console.WriteLine("Welkom in SexShopXX");
-            verkoop.winkelWagentje.productCataloges.BeschrijfAlleProducten();
-            while (verkoop.stage != Stage.Finished)
+            while (verkoop.stage != Stage.Email)
             {
+                verkoop.winkelWagentje.productCataloges.BeschrijfAlleProducten();
                 verkoop.HandleInput(Console.ReadLine());
             }
-            Console.WriteLine("The end");
-            Console.ReadLine();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace MSO
         string standaardsluiting = "Wij wensen u prettige dag toe. ";
         public string[] Print()
         {
-            string[] print = new string[2];
+            string[] print = new string[1];
             print[0] = standaardopening;
             print[1] = standaardsluiting;
             return print;
