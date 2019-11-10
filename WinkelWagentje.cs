@@ -8,7 +8,7 @@ namespace MSO
 {
     class WinkelWagentje
     {
-        public ProductCataloges productCataloges;
+        public ProductCataloges productCataloges = new ProductCataloges();
         public Dictionary<Product, int> InDeWagenDictionary = new Dictionary<Product, int>();
         public List<Product> InDeWagenList = new List<Product>();
         public void Add(int number)

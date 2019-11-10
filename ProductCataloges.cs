@@ -9,7 +9,15 @@ namespace MSO
     public class ProductCataloges
     {
         public List<Product> AlleProducten = new List<Product>();
-
+        public void BeschrijfAlleProducten()
+        {
+            int i = 1;
+            foreach (Product product in AlleProducten)
+            {
+                Console.WriteLine(i.ToString() + "." + product.naam + " " + product.prijs );
+                i++;
+            }
+        }
         public void HaalproductenUitDatabase()
         {
             string[] producten = System.IO.File.ReadAllLines(@"..\..\producten.txt");

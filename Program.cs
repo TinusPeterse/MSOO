@@ -11,14 +11,11 @@ namespace MSO
         
         static void Main(string[] args)
         {
-            ProductCataloges productCataloges = new ProductCataloges();
-            productCataloges.HaalproductenUitDatabase();
-            int i = 1;
-            foreach (Product product in productCataloges.AlleProducten)
-            {
-                Console.WriteLine(i.ToString() + "." + product.naam);
-                i++;
-            }
+            WinkelWagentje winkelWagentje = new WinkelWagentje();
+            winkelWagentje.productCataloges.HaalproductenUitDatabase();
+            winkelWagentje.productCataloges.BeschrijfAlleProducten();
+            winkelWagentje.Add(Convert.ToInt32(Console.ReadLine()));
+            Console.WriteLine("TheEndForNow");
             Console.ReadLine();
         }
     }
