@@ -13,9 +13,11 @@ namespace MSO
         {
             ProductCataloges productCataloges = new ProductCataloges();
             productCataloges.HaalproductenUitDatabase();
+            int i = 1;
             foreach (Product product in productCataloges.AlleProducten)
             {
-                Console.WriteLine(product.naam);
+                Console.WriteLine(i.ToString() + "." + product.naam);
+                i++;
             }
             Console.ReadLine();
         }
