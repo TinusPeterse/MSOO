@@ -8,20 +8,11 @@ namespace MSO
 {
 	class Betalinghandler
 	{
-		public WinkelWagentje winkelWagentje;
-		public string Probeerbetaling(string setting)
+		public bool Probeerbetaling(string setting)
 		{
-			if (setting == "success") return Betalinggelukt();
-			if (setting == "failure") return Betalingmislukt();
-			else return "Parse error";
-		}
-		private string Betalingmislukt()
-		{
-			return "faal";
-		}
-		private string Betalinggelukt()
-		{
-			return "success";
+            if (setting == "succes") return true;
+            if (setting == "failure") return false;
+            else return false;
 		}
 	}
 }

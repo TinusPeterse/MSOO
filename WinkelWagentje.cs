@@ -11,13 +11,13 @@ namespace MSO
 		public ProductCataloges productCataloges = new ProductCataloges();
 		public Dictionary<Product, int> InDeWagenDictionary = new Dictionary<Product, int>();
 		public List<Product> InDeWagenList = new List<Product>();
+        public Prijsberekenaar prijsberekenaar = new Prijsberekenaar();
 		public bool Leegwinkelwagentje = true;
 		public bool HeeftFysiekProduct = false;
 		public double Prijs = 0;
-		public void Add(int number,int amount)
+		public void Add(Product currentProduct, int amount)
 		{
 			Leegwinkelwagentje = false;
-			Product currentProduct = productCataloges.AlleProducten[number - 1];
 			if (currentProduct.productType == ProductType.Fysiek) HeeftFysiekProduct = true;
 			if (InDeWagenDictionary.ContainsKey(currentProduct))            // Als je iets bijbesteld wordt de orderregels samengevoegd
 			{
@@ -44,12 +44,10 @@ namespace MSO
         }
 		public void Betalen()
 		{
-			foreach (Product a in InDeWagenList)
-				Prijs += a.prijs * InDeWagenDictionary[a];
+            Prijs = prijsberekenaar.Berekenprijs(InDeWagenDictionary, InDeWagenList);
 			Console.Clear();
 			PrintWagentje();
 			Console.WriteLine("Uw totaal bedrag is : " + Prijs.ToString());
-			Console.ReadLine();
 		}
     }
 }
