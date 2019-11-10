@@ -14,12 +14,11 @@ namespace MSO
 		public bool Leegwinkelwagentje = true;
 		public bool HeeftFysiekProduct = false;
 		public double Prijs = 0;
-		public void Add(int number)
+		public void Add(int number,int amount)
 		{
 			Leegwinkelwagentje = false;
-			Product currentProduct = productCataloges.AlleProducten[number];
+			Product currentProduct = productCataloges.AlleProducten[number - 1];
 			if (currentProduct.productType == ProductType.Fysiek) HeeftFysiekProduct = true;
-			int	amount = amountRequested();
 			if (InDeWagenDictionary.ContainsKey(currentProduct))            // Als je iets bijbesteld wordt de orderregels samengevoegd
 			{
 				amount += InDeWagenDictionary[currentProduct];
@@ -27,22 +26,10 @@ namespace MSO
 				InDeWagenList.Remove(currentProduct);
 			}
 			if (amount < 1) Console.WriteLine("Je kan niet minder dan één product bestellen");
-			else addToCart(currentProduct, amount);
+			else AddToCart(currentProduct, amount);
 		}
-		private int amountRequested()
-		{
-			Console.WriteLine("Hoeveel van dit product wilt u bestellen");
-			bool correctInput = false;
-			string input = "";
-			while (!correctInput)
-			{
-				input = Console.ReadLine();
-				int i;
-				if (int.TryParse(input, out i)) correctInput = true;
-			}
-			return int.Parse(input);
-		}
-		private void addToCart(Product currentProduct, int amount)
+		
+		private void AddToCart(Product currentProduct, int amount)
 		{
 			InDeWagenList.Add(currentProduct);
 			InDeWagenDictionary.Add(currentProduct, amount);
