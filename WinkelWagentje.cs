@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MSO
 {
-	class WinkelWagentje
+	public class WinkelWagentje
 	{
 		public ProductCataloges productCataloges = new ProductCataloges();
 		public Dictionary<Product, int> InDeWagenDictionary = new Dictionary<Product, int>();
