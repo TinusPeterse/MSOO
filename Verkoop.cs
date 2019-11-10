@@ -24,6 +24,7 @@ namespace MSO
                         case "add item":
                             {
                                 winkelWagentje.Add(winkelWagentje.productCataloges.AlleProducten[checkedStringToInt() - 1], AmountRequested());
+                                Console.WriteLine("item succesfully added to cart");
                                 break;
                             }
                         case "print cart":

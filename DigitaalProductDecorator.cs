@@ -10,7 +10,8 @@ namespace MSO
     {
         public override string Print(Product product, int amount, int rnd)
         {
-            string print = product.naam + " hoeveelheid : " + amount.ToString() + " beschrijving : " + product.beschrijving + " downloadlink : " + product.Randomstringgenerator(product.naam, rnd) ;
+            string print = product.naam + " hoeveelheid : " + amount.ToString() + " beschrijving : " + product.beschrijving;
+            for (int i = amount; i > 0; i--) { print += " downloadlink : " + product.Randomstringgenerator(product.naam, rnd+i); };
             return print;
         }
     }
