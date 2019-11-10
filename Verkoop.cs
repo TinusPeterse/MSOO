@@ -23,7 +23,7 @@ namespace MSO
                     {
                         case "add item":
                             {
-                                winkelWagentje.Add(checkedStringToInt(), AmountRequested());
+                                winkelWagentje.Add(winkelWagentje.productCataloges.AlleProducten[checkedStringToInt() - 1], AmountRequested());
                                 break;
                             }
                         case "print cart":
