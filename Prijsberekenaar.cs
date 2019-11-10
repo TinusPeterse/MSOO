@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MSO
 {
-	class Prijsberekenaar
+	public class Prijsberekenaar
 	{
         public bool VerzendkostenToegevoegd = false;
 		private double verzendkosten = 4.95;
@@ -15,7 +15,7 @@ namespace MSO
 			double Prijs = 0;
             foreach (Product a in list)
             {
-                Prijs += a.prijs * dic[a];
+                Prijs += (a.prijs * dic[a]);
                 if (a.productType == ProductType.Fysiek)
                 {
                     if (VerzendkostenToegevoegd)

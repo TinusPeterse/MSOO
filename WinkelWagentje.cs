@@ -11,6 +11,7 @@ namespace MSO
 		public ProductCataloges productCataloges = new ProductCataloges();
 		public Dictionary<Product, int> InDeWagenDictionary = new Dictionary<Product, int>();
 		public List<Product> InDeWagenList = new List<Product>();
+        public Prijsberekenaar prijsberekenaar = new Prijsberekenaar();
 		public bool Leegwinkelwagentje = true;
 		public bool HeeftFysiekProduct = false;
 		public double Prijs = 0;
@@ -44,12 +45,10 @@ namespace MSO
         }
 		public void Betalen()
 		{
-			foreach (Product a in InDeWagenList)
-				Prijs += a.prijs * InDeWagenDictionary[a];
+            Prijs = prijsberekenaar.Berekenprijs(InDeWagenDictionary, InDeWagenList);
 			Console.Clear();
 			PrintWagentje();
 			Console.WriteLine("Uw totaal bedrag is : " + Prijs.ToString());
-			Console.ReadLine();
 		}
     }
 }
