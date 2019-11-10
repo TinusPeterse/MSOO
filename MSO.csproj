@@ -49,6 +49,7 @@
     <Compile Include="ProductCataloges.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Verkoop.cs" />
     <Compile Include="WinkelWagentje.cs" />
   </ItemGroup>
   <ItemGroup>
