@@ -15,5 +15,5 @@ namespace MSO
         public string beschrijving;
         public abstract string Randomstringgenerator(string naam, int rnd);
     }
-    
+
 }

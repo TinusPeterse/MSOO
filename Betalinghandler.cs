@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace MSO
 {
-	class Betalinghandler
+	public class Betalinghandler
 	{
-		public bool Probeerbetaling(string setting)
+		public bool Probeerbetaling(string setting, bool wagentjeIsLeeg)
 		{
-            if (setting == "succes") return true;
-            if (setting == "failure") return false;
-            else return false;
+            if (setting == "succes" && !wagentjeIsLeeg) return true;
+			if (wagentjeIsLeeg) Console.WriteLine("Uw winkelmandje is leeg, voeg eerst iets toe");
+			return false;
 		}
 	}
 }

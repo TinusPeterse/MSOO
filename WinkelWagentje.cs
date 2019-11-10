@@ -15,20 +15,23 @@ namespace MSO
 		public bool Leegwinkelwagentje = true;
 		public bool HeeftFysiekProduct = false;
 		public double Prijs = 0;
-		public void Add(Product currentProduct, int amount)
-		{
-			Leegwinkelwagentje = false;
-			if (currentProduct.productType == ProductType.Fysiek) HeeftFysiekProduct = true;
-			if (InDeWagenDictionary.ContainsKey(currentProduct))            // Als je iets bijbesteld wordt de orderregels samengevoegd
-			{
-				amount += InDeWagenDictionary[currentProduct];
-				InDeWagenDictionary.Remove(currentProduct);
-				InDeWagenList.Remove(currentProduct);
-			}
-			if (amount < 1) Console.WriteLine("Je kan niet minder dan één product bestellen");
-			else AddToCart(currentProduct, amount);
-		}
-		
+        public void Add(Product currentProduct, int amount)
+        {
+            if (InDeWagenDictionary.ContainsKey(currentProduct))            // Als je iets bijbesteld wordt de orderregels samengevoegd
+            {
+                amount += InDeWagenDictionary[currentProduct];
+                InDeWagenDictionary.Remove(currentProduct);
+                InDeWagenList.Remove(currentProduct);
+            }
+            if (amount < 1) Console.WriteLine("Je kan niet minder dan één product bestellen");
+            else
+            {
+                AddToCart(currentProduct, amount);
+                Leegwinkelwagentje = false;
+                Console.WriteLine("item succesfully added to cart");
+                if (currentProduct.productType == ProductType.Fysiek) HeeftFysiekProduct = true;
+            }
+        }
 		private void AddToCart(Product currentProduct, int amount)
 		{
 			InDeWagenList.Add(currentProduct);
@@ -42,10 +45,10 @@ namespace MSO
                 Console.WriteLine(product.naam + " U heeft hier zoveel van besteld : "  + InDeWagenDictionary[product]);
             }
         }
-		public void Betalen()
+		public void GetMyPrice()
 		{
             Prijs = prijsberekenaar.Berekenprijs(InDeWagenDictionary, InDeWagenList);
-			Console.Clear();
+            Console.Clear();
 			PrintWagentje();
 			Console.WriteLine("Uw totaal bedrag is : " + Prijs.ToString());
 		}

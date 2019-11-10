@@ -23,18 +23,23 @@ namespace MSO
                     {
                         case "add item":
                             {
+                                Console.WriteLine("please fill in the number of the item you want");
                                 winkelWagentje.Add(winkelWagentje.productCataloges.AlleProducten[checkedStringToInt() - 1], AmountRequested());
-                                Console.WriteLine("item succesfully added to cart");
                                 break;
                             }
                         case "print cart":
                             {
-                                winkelWagentje.PrintWagentje();
+                                winkelWagentje.GetMyPrice(); // Dit roept niet het betalen aan en print alleen de cart
+                                                          // Verwarrende naam I know.
+                                Console.WriteLine("");
+                                winkelWagentje.productCataloges.BeschrijfAlleProducten();
                                 break;
                             }
                         case "pay":
                             {
-                                winkelWagentje.Betalen();
+                                if (winkelWagentje.HeeftFysiekProduct)
+                                { AskAdres(); }
+                                winkelWagentje.GetMyPrice();
                                 stage = Stage.Paying;
                                 break;
                             }
@@ -48,7 +53,7 @@ namespace MSO
                 }
                 case Stage.Paying:
                 {
-                    switch (betalinghandler.Probeerbetaling(input))
+                    switch (betalinghandler.Probeerbetaling(input, winkelWagentje.Leegwinkelwagentje))
                     {
                         case true:
                             {
@@ -72,7 +77,7 @@ namespace MSO
                     {
                         case "read email":
                         {
-                            foreach (string line in emailopsteller.PrintEmail(winkelWagentje.InDeWagenDictionary, winkelWagentje.InDeWagenList))
+                            foreach (string line in emailopsteller.PrintEmail(winkelWagentje.InDeWagenDictionary, winkelWagentje.InDeWagenList,postcode,huisnummer))
                             {
                                 Console.WriteLine(line);
                             }
@@ -105,8 +110,19 @@ namespace MSO
                 input = Console.ReadLine();
                 int i;
                 if (int.TryParse(input, out i)) correctInput = true;
+                else { Console.WriteLine("Parse error"); }
             }
             return int.Parse(input);
+        }
+        public string postcode = "0000AA";
+        public int huisnummer = 0;
+        public void AskAdres()
+        {
+            Console.WriteLine("For your orderd physical products please fill in your address");
+            Console.WriteLine("Postcode : ");
+            postcode = Console.ReadLine();
+            Console.WriteLine("huisnummer : ");
+            huisnummer = checkedStringToInt();
         }
     }
 }

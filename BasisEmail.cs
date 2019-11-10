@@ -8,8 +8,8 @@ namespace MSO
 {
     class BasisEmail
     {
-        string standaardopening = "U heeft de volgende producten besteld bij SexShopXX ";
-        string standaardsluiting = "Wij wensen u prettige dag toe. ";
+        string standaardopening = "U heeft de volgende producten besteld bij SexShopXX";
+        string standaardsluiting = "Wij wensen u prettige dag toe.";
         public string[] Print()
         {
             string[] print = new string[2];
