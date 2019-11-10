@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace MSO
 {
-    class ShopUI
+    abstract class EmailDecorator
     {
+        abstract public string Print(Product product, int amount, int rnd);
     }
 }

@@ -14,13 +14,12 @@ namespace MSO
 		public bool Leegwinkelwagentje = true;
 		public bool HeeftFysiekProduct = false;
 		public double Prijs = 0;
-        public void Add(int number)
+        public void Add(int number, int amount)
         {
 			Leegwinkelwagentje = false;
 			Product currentProduct = productCataloges.AlleProducten[number];
 			if (currentProduct.productType == ProductType.Fysiek) HeeftFysiekProduct = true;
 			Console.WriteLine("Hoeveel zou u er willen?");
-			int amount = Convert.ToInt32(Console.ReadLine());
 			if (InDeWagenDictionary.ContainsKey(currentProduct))			// Als je iets bijbesteld wordt de orderregels samengevoegd
 			{
 				amount += InDeWagenDictionary[currentProduct];

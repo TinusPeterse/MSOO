@@ -13,6 +13,7 @@ namespace MSO
         public ProductType productType;
         public double prijs;
         public string beschrijving;
-
+        public abstract string Randomstringgenerator(string naam, int rnd);
     }
+    
 }
