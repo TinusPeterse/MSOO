@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace MSO
 {
-    public enum ProductType {Digitaal, Fysiek};
-    class Program
+    class FysiekProduct:Product
     {
 
     }
