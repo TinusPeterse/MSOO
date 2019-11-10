@@ -15,10 +15,9 @@ namespace MSO
             prijs = _prijs;
             beschrijving = _beschrijving;
         }
-        Random rnd = new Random();
-        public string Randomstringgenerator()
+        public override string Randomstringgenerator(string naam, int rnd)
         {
-            return "randomstring*/"+naam+"/"+rnd.ToString();
+            return "randomstring*/" + naam + "/" + rnd.ToString();
         }
     }
 }

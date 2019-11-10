@@ -17,7 +17,6 @@ namespace MSO
 			winkelWagentje.productCataloges.BeschrijfAlleProducten();
 			while (!done)
 			{
-				
 				string input = Console.ReadLine();
 				int amount;
 				if (int.TryParse(input, out amount))

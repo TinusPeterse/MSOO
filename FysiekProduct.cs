@@ -15,5 +15,9 @@ namespace MSO
             prijs = _prijs;
             beschrijving = _beschrijving;
         }
+        public override string Randomstringgenerator(string naam, int rnd)
+        {
+            return "";
+        }
     }
 }
