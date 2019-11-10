@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MSO
 {
-    class Emailopsteller
+    public class Emailopsteller
     {
         public List<String> PrintEmail(Dictionary<Product,int> keyValuePairs, List<Product> products)
         {

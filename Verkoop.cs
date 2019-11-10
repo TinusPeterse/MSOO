@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MSO
 {
-    enum Stage { Shopping, Paying, Email }
-    class Verkoop
+    public enum Stage { Shopping, Paying, Email, Finished }
+    public class Verkoop
     {
         public WinkelWagentje winkelWagentje = new WinkelWagentje();
         private Betalinghandler betalinghandler = new Betalinghandler();
@@ -17,19 +17,76 @@ namespace MSO
         {
             switch (stage)
             {
-                case Stage.Shopping:    {
-                            switch (input)  {
-                            case "add item": { winkelWagentje.Add(checkedStringToInt(),AmountRequested());
-                            break; }
-                                            }
+                case Stage.Shopping:
+                {
+                    switch (input)
+                    {
+                        case "add item":
+                            {
+                                winkelWagentje.Add(winkelWagentje.productCataloges.AlleProducten[checkedStringToInt() - 1], AmountRequested());
+                                break;
+                            }
+                        case "print cart":
+                            {
+                                winkelWagentje.PrintWagentje();
+                                break;
+                            }
+                        case "pay":
+                            {
+                                winkelWagentje.Betalen();
+                                stage = Stage.Paying;
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("wrong action please try again");
+                                break;
+                            }
+                        }
                 break;
-                                        }
-                case Stage.Paying:      {
-                break;
-                                        }
-                case Stage.Email:       {
-                break;
-                                        }
+                }
+                case Stage.Paying:
+                {
+                    switch (betalinghandler.Probeerbetaling(input))
+                    {
+                        case true:
+                            {
+                                Console.WriteLine("De betaling was een succes");
+                                stage = Stage.Email;
+                                break;
+                            }
+                        case false:
+                            {
+                                Console.WriteLine("De betaling is fout gegaan");
+                                Console.WriteLine("U bevindt zich nu opnieuw in het winkelwagentje");
+                                stage = Stage.Shopping;
+                                break;
+                            }
+                        }
+                    break;
+                }
+                case Stage.Email:
+                {
+                    switch (input)
+                    {
+                        case "read email":
+                        {
+                            foreach (string line in emailopsteller.PrintEmail(winkelWagentje.InDeWagenDictionary, winkelWagentje.InDeWagenList))
+                            {
+                                Console.WriteLine(line);
+                            }
+                            stage = Stage.Finished;
+                            break;
+                        }
+                        default:
+                        {
+                            Console.WriteLine("wrong action please try again");
+                            break;
+                        }
+                    }
+                    
+                    break;
+                }
             }
         }
 
