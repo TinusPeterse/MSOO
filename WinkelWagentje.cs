@@ -6,30 +6,47 @@ using System.Threading.Tasks;
 
 namespace MSO
 {
-    class WinkelWagentje
-    {
-        public ProductCataloges productCataloges = new ProductCataloges();
-        public Dictionary<Product, int> InDeWagenDictionary = new Dictionary<Product, int>();
-        public List<Product> InDeWagenList = new List<Product>();
+	class WinkelWagentje
+	{
+		public ProductCataloges productCataloges = new ProductCataloges();
+		public Dictionary<Product, int> InDeWagenDictionary = new Dictionary<Product, int>();
+		public List<Product> InDeWagenList = new List<Product>();
 		public bool Leegwinkelwagentje = true;
 		public bool HeeftFysiekProduct = false;
 		public double Prijs = 0;
-        public void Add(int number, int amount)
-        {
+		public void Add(int number)
+		{
 			Leegwinkelwagentje = false;
 			Product currentProduct = productCataloges.AlleProducten[number];
 			if (currentProduct.productType == ProductType.Fysiek) HeeftFysiekProduct = true;
-			Console.WriteLine("Hoeveel zou u er willen?");
-			if (InDeWagenDictionary.ContainsKey(currentProduct))			// Als je iets bijbesteld wordt de orderregels samengevoegd
+			int	amount = amountRequested();
+			if (InDeWagenDictionary.ContainsKey(currentProduct))            // Als je iets bijbesteld wordt de orderregels samengevoegd
 			{
 				amount += InDeWagenDictionary[currentProduct];
 				InDeWagenDictionary.Remove(currentProduct);
 				InDeWagenList.Remove(currentProduct);
 			}
-
-            InDeWagenList.Add(currentProduct);
-            InDeWagenDictionary.Add(currentProduct, amount);
-        }
+			if (amount < 1) Console.WriteLine("Je kan niet minder dan één product bestellen");
+			else addToCart(currentProduct, amount);
+		}
+		private int amountRequested()
+		{
+			Console.WriteLine("Hoeveel van dit product wilt u bestellen");
+			bool correctInput = false;
+			string input = "";
+			while (!correctInput)
+			{
+				input = Console.ReadLine();
+				int i;
+				if (int.TryParse(input, out i)) correctInput = true;
+			}
+			return int.Parse(input);
+		}
+		private void addToCart(Product currentProduct, int amount)
+		{
+			InDeWagenList.Add(currentProduct);
+			InDeWagenDictionary.Add(currentProduct, amount);
+		}
         public void PrintWagentje()
         {
             Console.WriteLine("Uw order to zo ver : ");
