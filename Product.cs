@@ -13,5 +13,6 @@ namespace MSO
         public ProductType productType;
         public double prijs;
         public string beschrijving;
+
     }
 }
